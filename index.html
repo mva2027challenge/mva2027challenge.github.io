@@ -1,255 +1,686 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: http://ogp.me/ns#">
 <head>
-  <meta charset="UTF-8">
-  <title>MVA 2027 Challenge</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<title>Small Multi-Object Tracking for Spotting Birds (SMOT4SB) Challenge 2025 - MVA2025</title>
 
-  <style>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	
+	<meta name="robots" content="index, follow">
+<meta property="og:title" content="SMOT4SB 2025 - Small Multi-Object Tracking for Spotting Birds">
+<meta property="og:description" content="Join the SMOT4SB Challenge 2025 at MVA to advance small object tracking techniques using UAV-captured video data.">
+<meta property="og:image" content="https://www.mva-org.jp/mva2025/data/uploads/bird/smot4sb.png">
+<meta property="og:url" content="https://www.mva-org.jp/mva2025/challenge">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SMOT4SB 2025 - Small Multi-Object Tracking for Spotting Birds">
+<meta name="twitter:description" content="An MVA2025 challenge for advancing multi-object tracking of small birds using UAV video sequences.">
+<meta name="twitter:image" content="https://www.mva-org.jp/mva2025/data/uploads/bird/smot4sb.png">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>	
+	<meta name="twitter:card" content="summary_large_image" />
+	
+	<!-- <link rel="stylesheet" href="https://mva-org.jp/mva2025/theme/ResponsiveInnovation/assets/css/normalize.css"> -->
+	<link rel="stylesheet" href="https://mva-org.jp/mva2025/theme/ResponsiveInnovation/assets/css/skeleton.css">
+	<link rel="stylesheet" href="https://mva-org.jp/mva2025/theme/ResponsiveInnovation/stylesheets/base.css">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="icon" type="image/png" href="/favicon.png">
+
+	<meta name="description" content="SMOT4SB is an MVA2025 Challenge focused on tracking small birds in UAV video sequences. Participants will develop multi-object tracking models to tackle real-world challenges in autonomous UAV navigation, ecological monitoring, and bird strike prevention." />
+<meta name="keywords" content="small object tracking, deep learning, computer vision, MVA, UAV, bird tracking, multi-object tracking, MOT, SOD4SB, SMOT4SB, autonomous navigation, ecological monitoring" />
+<link rel="canonical" href="https://mva-org.jp/mva2025/index.php?id=challenge" />
+	
+</head> 
+<body id="challenge">
+
+<main>
+<article>
+	<header>
+	<h1>Small Multi-Object Tracking for Spotting Birds (SMOT4SB) Challenge 2025</h1>
+	</header>
+
+	<style type="text/css">
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #222;
-      background: #f7f9fc;
-      line-height: 1.6;
+        background-repeat: no-repeat; 
+        background-position: top center;
+        background-color: #6B6C6B;
+        background-attachment: fixed;
     }
-
-    header {
-      background: #163b6d;
-      color: white;
-      padding: 48px 24px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 40px;
-    }
-
-    header p {
-      margin-top: 12px;
-      font-size: 18px;
-    }
-
-    nav {
-      background: white;
-      border-bottom: 1px solid #ddd;
-      padding: 12px 20px;
-      text-align: center;
-    }
-
-    nav a {
-      margin: 0 10px;
-      color: #163b6d;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    main {
-      max-width: 980px;
-      margin: 32px auto;
-      padding: 0 20px;
-    }
-
-    section {
-      background: white;
-      margin-bottom: 24px;
-      padding: 24px;
-      border-radius: 10px;
-      border: 1px solid #e0e0e0;
-    }
-
-    h2 {
-      color: #163b6d;
-      margin-top: 0;
-    }
-
-    table {
+    video {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 12px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    dl{
+      word-break: break-all;
+    }
+    
+    article h1 {
+      margin: 0 0 0.5em 0;
+      color: var(--main-color-light);
+      font-size: 37px;
+      line-height: 37px;
+    }
+    
+    pre.m-console-wrap{
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+    
+    a{
+      word-break: break-all;
+    }
+    
+    img {
+    width:100%;
+    max-width: 100%;
+    height: auto;
     }
 
-    th, td {
-      border-bottom: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
+    /* Button and Collapsible Styling */
+    .collapsible {
+        background: linear-gradient(to right, #8e2de2, #4a00e0); /* Gradient background */
+        color: white; /* Text color */
+        font-weight: bold; /* Bold font */
+        font-size: 16px; /* Font size */
+        cursor: pointer; /* Pointer cursor on hover */
+        padding: 12px 16px; /* Inner padding */
+        width: 100%; /* Full width */
+        max-width: 100%; /* Prevent the button from exceeding parent width */
+        border: none; /* No border */
+        text-align: left; /* Left-align text */
+        outline: none; /* Remove focus outline */
+        border-radius: 8px; /* Rounded corners */
+        display: flex; /* Flexbox for alignment */
+        justify-content: space-between; /* Space between text and arrow */
+        align-items: center; /* Center items vertically */
+        word-wrap: break-word; /* Enable word wrapping */
+        white-space: normal; /* Allow text wrapping */
+        overflow-wrap: break-word; /* Ensure long words break within the button */
+        line-height: 1.5; /* Adjust line height */
+        box-sizing: border-box; /* Include padding and border in width/height calculations */
+        transition: background 0.3s, color 0.3s; /* Smooth transitions */
     }
 
-    th {
-      background: #eef5ff;
+    /* Hover state styling */
+    .collapsible:hover {
+        background: linear-gradient(to right, #a84dff, #6b00ff); /* Lighter gradient on hover */
     }
 
-    footer {
-      text-align: center;
-      padding: 24px;
-      color: #666;
-      background: white;
-      border-top: 1px solid #ddd;
+    /* Focus and active state styling */
+    .collapsible:focus,
+    .collapsible:active {
+        color: white; /* Keep text color white on focus and active states */
+        background: linear-gradient(to right, #8e2de2, #4a00e0); /* Retain original background */
     }
 
-    .notice {
-      background: #fff8e1;
-      border-left: 5px solid #f2b705;
-      padding: 12px 16px;
-      margin-top: 16px;
+    /* Arrow styling */
+    .collapsible::after {
+        content: '\25bc'; /* Downward arrow */
+        font-size: 14px; /* Arrow size */
+        margin-left: 8px; /* Space between text and arrow */
+        transition: transform 0.3s; /* Smooth arrow rotation */
     }
-  </style>
-</head>
 
-<body>
-  <header>
-    <h1>MVA 2027 Challenge</h1>
-    <p>Temporary website for the MVA 2027 Challenge</p>
-  </header>
+    /* Rotate arrow when active */
+    .collapsible.active::after {
+        transform: rotate(-180deg); /* Rotate arrow upwards */
+    }
 
-  <nav>
-    <a href="#overview">Overview</a>
-    <a href="#task">Task</a>
-    <a href="#dataset">Dataset</a>
-    <a href="#evaluation">Evaluation</a>
-    <a href="#dates">Important Dates</a>
-    <a href="#submission">Submission</a>
-    <a href="#organizers">Organizers</a>
-  </nav>
+    /* Content Section Styling */
+    .content {
+        padding: 10px 15px;
+        display: none;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        border-left: 4px solid #4a00e0;
+        font-size: 13px;
+        border-radius: 8px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-  <main>
-    <section id="overview">
-      <h2>Overview</h2>
-      <p>
-        This is the temporary website for the MVA 2027 Challenge.
-        Details of the challenge will be announced later.
-      </p>
-      <p>
-        The challenge will focus on a computer vision task related to machine
-        vision applications. The official task definition, dataset, evaluation
-        protocol, and submission rules will be provided on this page.
-      </p>
-      <div class="notice">
-        This website is currently under preparation.
-      </div>
-    </section>
+    .content h4 {
+        font-size: 14px;
+        margin-top: 10px;
+    }
 
-    <section id="task">
-      <h2>Task</h2>
-      <p>
-        The task description will be announced later.
-      </p>
-      <ul>
-        <li>Challenge task: TBD</li>
-        <li>Input data: TBD</li>
-        <li>Output format: TBD</li>
-        <li>Restrictions and rules: TBD</li>
-      </ul>
-    </section>
+    .content p, .content ul, .content li {
+        margin: 5px 0;
+    }
 
-    <section id="dataset">
-      <h2>Dataset</h2>
-      <p>
-        The dataset will be released later.
-      </p>
+    /* Math Display Styling */
+    .math-display {
+        background: #f1f1f1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 10px 0;
+        font-family: monospace;
+    }
 
-      <table>
+
+    /* Responsive design */
+
+    .pc { display: block !important; }
+    .sp { display: none !important; }
+     
+    @media only screen and (max-width: 750px) {
+        .pc { display: none !important; }
+        .sp { display: block !important; }
+        #twitter-widget-0{
+      width:80px !important;
+      height:25px !important;
+       }
+        .collapsible {
+            font-size: 14px; /* Reduce font size for smaller screens */
+            padding: 10px 14px; /* Adjust padding */
+            line-height: 1.4; /* Slightly reduce line height */
+        }
+    }
+</style>
+  
+
+<p>
+    <video autoplay loop muted playsinline>
+        <source src="https://www.mva-org.jp/mva2025/data/uploads/bird/sample-video-30.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- <video class="sp" autoplay loop muted playsinline>
+        <source src="https://www.mva-org.jp/mva2025/data/uploads/bird/sample-video-small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video> -->
+</p>
+
+<!-- OVERVIEW -->
+
+<h3 id="overview"><u>Overview</u></h3>
+
+<p>In conjunction with MVA2025, we host <strong>the Small Multi-Object Tracking for Spotting Birds (SMOT4SB) Challenge</strong>. This challenge builds upon the <strong>MVA2023 Small Object Detection for Spotting Birds (SOD4SB) Challenge <a class="m-footnote" href="#footnote-1" id="footnote-reference-1">[1]</a></strong> by extending the task from static image-based detection to dynamic video-based tracking. The primary goal is to detect and track small birds captured by unmanned aerial vehicles (UAVs) across multiple frames.</p>
+
+<p>&nbsp;</p>
+
+<p>Unlike conventional small object detection tasks, this challenge introduces motion information to enhance detection accuracy. Inspired by the human visual system, particularly areas such as <strong>MT/V5 and the dorsal stream</strong>, which specialize in motion perception, this challenge explores whether incorporating temporal information can improve the detection performance of small birds that are otherwise difficult to identify in static images.</p>
+
+<p>Additionally, beyond just detection, this challenge introduces an small multi-object tracking task, where participants must assign consistent IDs to individual birds across frames. This added complexity aims to advance research in <strong>Small Object Recognition</strong> and improve machine vision techniques for dynamic and cluttered environments.</p>
+
+<p>&nbsp;</p>
+
+<p>As with the previous challenge, SMOT4SB aligns with MVA’s mission of bridging academia and industry in the field of machine vision and its applications. The challenge is designed not only to drive fundamental research but also to foster practical applications. Potential real-world use cases include:</p>
+
+<ul>
+    <li><strong>Autonomous UAV systems</strong> capable of detecting and avoiding bird collisions to ensure safe flight operations.</li>
+    <li><strong>Agricultural protection systems</strong> that identify and track harmful birds to help prevent damage to fields and rice paddies.</li>
+    <li><strong>Automated ecological monitoring</strong> systems that track bird populations and movements to support environmental conservation efforts.</li>
+</ul>
+
+<p>Through this challenge, we aim to stimulate research in small object tracking while encouraging the development of practical solutions for real-world challenges in UAV perception and automated surveillance.</p>
+
+<h3><u>Announcements</u></h3>
+
+<ul>
+<li>[ July 31, 2025 ] &#x1f451; <font color=#990066><strong>The results of the 5 awards are now shown <a href="https://www.mva-org.jp/mva2025/challenge/challenge_winner">here</a>.</strong> Congratulations to all the winners! <br>We also extend our gratitude to 78 participants who joined us!&#127881; </font></li>
+<li>[ July 31, 2025 ] <font color=#990066>The paper <strong>"MVA 2025 Small Multi-Object Tracking for Spotting Birds Challenge: Dataset, Methods, and Results"</strong> is now available. </font> {<a href="https://arxiv.org/abs/2507.12832">arXiv</a>}
+<li>[April 10, 2025] <font color=#990066>Update on the competition timeline: Adjusted dates for Private Test, Paper Submission Deadline, and Notification. Please check the updated the <a href="#important-dates">important dates</a>.</font></li>
+<li>[March 4, 2025] <font color=#990066>Update on the Public Test Phase schedule: Adjusted dates for Phase 1 and Phase 2.</font> <a href="https://mva-org.jp/mva2025/challenge/about-pub-test-phase">Read more</a></li>
+<li>[January 21, 2025] <font color=#990066>The Phase Split Information: Details on the planned division of the Public Test Phase.</font> <a href="https://mva-org.jp/mva2025/challenge/about-pub-test-phase">Read more</a></li>
+<li>[January 21, 2025] <font color=#990066>The challenge website is now online!</font></li>
+</ul>
+
+<!-- TASK -->
+<h3 id="task"><u>Task</u></h3>
+
+<p>The <strong>SMOT4SB Challenge</strong> extends the <strong>SOD</strong> problem into a <strong>multi-object tracking (MOT)</strong> task. Participants must track <strong>small birds</strong> across multiple frames in video sequences captured by <strong>UAVs</strong>.</p>
+
+<p>Unlike static image-based SOD, this challenge requires:</p>
+
+<ul>
+    <li><strong>Detecting birds</strong> in each frame of a video sequence.</li>
+    <li><strong>Assigning unique and consistent tracking IDs</strong> to each bird across frames.</li>
+    <li><strong>Handling occlusions, motion blur, and rapid movement</strong>, which commonly occur in UAV-based bird tracking.</li>
+</ul>
+
+<p>To successfully address this challenge, participants must develop MOT models capable of overcoming the following difficulties:</p>
+
+<ul>
+    <li><strong>Small Object Size:</strong> Birds often occupy only a few pixels, making detection difficult.</li>
+    <li><strong>High Motion Variability:</strong> Birds exhibit irregular and rapid movements, requiring <strong>motion-aware tracking</strong> strategies.</li>
+    <li><strong>Instance Identity Preservation:</strong> Ensuring <strong>consistent tracking IDs</strong> across frames despite occlusions and temporary disappearances.</li>
+    <li><strong>Realistic UAV-based Conditions:</strong> Videos may contain <strong>camera motion, changing lighting conditions, and background clutter</strong>, necessitating <strong>robust tracking algorithms</strong>.</li>
+    <li><strong>Camera Motion vs. Object Motion Interaction:</strong> Unlike many traditional tracking scenarios, both the birds and the UAV-mounted camera move simultaneously, introducing <strong>motion entanglement</strong> that challenges conventional object tracking techniques.</li>
+</ul>
+
+
+<p>Participants are encouraged to explore approaches such as:</p>
+
+<ul>
+    <li><strong>Optical flow-based tracking</strong> to capture fine-grained bird motion.</li>
+    <li><strong>Re-identification (Re-ID) models</strong> to maintain consistent tracking IDs despite occlusions.</li>
+    <li><strong>Transformer-based tracking architectures</strong> for handling long-term motion dependencies.</li>
+</ul>
+
+<p>The dataset includes <strong>annotated bird tracking sequences</strong>, allowing participants to develop and evaluate their methods under realistic UAV conditions.</p>
+
+<p>By participating in <strong>SMOT4SB</strong>, researchers and engineers will contribute to advancing <strong>small object tracking methodologies</strong> with applications in <strong>autonomous UAV navigation, ecological monitoring, and bird strike prevention systems</strong>.</p>
+
+<!-- DATASET -->
+
+<h3 id="dataset"><u>Dataset</u></h3>
+
+<p>The dataset for the <strong>SMOT4SB Challenge</strong> extends the <strong>SOD4SB dataset <a class="m-footnote" href="#footnote-1" id="footnote-reference-1">[1]</a></strong> by incorporating <strong>tracking IDs</strong> into video sequences. The dataset is structured into two main parts:</p>
+
+<ul>
+    <li><strong>Pre-training Object Detection Data (Image-based, from SOD4SB dataset):</strong> 
+        <ul>
+            <li>Consists of <strong>static images</strong> with annotated bird locations.</li>
+            <li>Designed to help participants pre-train object detection models before fine-tuning on tracking data.</li>
+            <li>Derived from the <strong>SOD4SB Challenge</strong> with the following subsets:
+                <ul>
+                    <li><strong>Train1</strong> (Modified from <a class="m-footnote" href="#footnote-2" id="footnote-reference-2">[2]</a>): 47,260 images with 60,971 annotated bird instances.</li>
+                    <li><strong>Train2</strong> (Subset of SOD4SB dataset <a class="m-footnote" href="#footnote-1" id="footnote-reference-1">[1]</a>): 9,759 images with 29,037 annotated bird instances.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    <li><strong>Tracking Dataset (New Video-based "SMOT4SB Dataset"):</strong>
+        <ul>
+            <li>Contains newly collected <strong>video sequences</strong> for multi-object tracking.</li>
+            <li>Includes tracking IDs to facilitate instance-level bird tracking.</li>
+            <li>Divided into three subsets:
+                <ul>
+                    <li><strong>Train:</strong> TBA (Includes both newly collected data and SOD4SB dataset-based video sequences).</li>
+                    <li><strong>Public Test:</strong> TBA.</li>
+                    <li><strong>Private Test:</strong> TBA.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    <li><strong>Data Format:</strong>
+        <ul>
+            <li><strong>Input:</strong> Video sequences (for tracking) & Images (for pre-training).</li>
+            <li><strong>Annotations:</strong> COCO format (bounding boxes, tracking IDs).</li>
+        </ul>
+    </li>
+</ul>
+
+<p>Participants are encouraged to utilize the <strong>Pre-training Data</strong> to build robust object detection models before fine-tuning them on the <strong>Tracking Dataset</strong> for multi-frame bird tracking.</p>
+
+<p style="text-align: center;">&#x1f4c1;<a href="https://drive.google.com/drive/folders/1Y1J13W6VlgDh-L28n_mVbs7HIfo_Hv5s?usp=sharin">SMOT4SB dataset</a>&nbsp;&nbsp;</p>
+
+<!-- EVALUATION -->
+
+<h3 id="evaluation"><u>Evaluation</u></h3>
+<p>In this challenge, we focus on evaluating tracking performance with an emphasis on <strong>HOTA (Higher Order Tracking Accuracy) <a class="m-footnote" href="#footnote-3" id="footnote-reference-3">[3]</a></strong>, which explicitly considers detection, localization, and association.</p>
+
+<p>However, because this challenge deals with <strong>small object tracking</strong>, traditional IoU-based evaluation methods commonly used in general tracking face significant challenges. IoU metrics tend to be overly sensitive to localization errors when applied to small objects, leading to unreliable evaluations.</p>
+
+<p>To address this issue, we propose a novel metric called <strong>SO-HOTA (Small Object HOTA)</strong>, inspired by HOTA but specifically designed for small object tracking. For detection and localization evaluation, we adopt <strong>Dot Detection (DotD) <a class="m-footnote" href="#footnote-4" id="footnote-reference-4">[4]</a></strong>, a method better suited for evaluating small objects compared to conventional IoU-based approaches. Please refer to “SO-HOTA DETAILS” for details of this evaluation metric.</p>
+
+<p><strong>The final rankings in this challenge will be determined solely based on SO-HOTA.</strong></p>
+
+<p>Additionally, a <strong>challenge report</strong> will be published after the competition, and the top-ranked participants will be invited as co-authors. This report will include an extensive analysis incorporating not only <strong>SO-HOTA</strong> but also traditional <strong>MOT evaluation metrics</strong> (e.g., MOTA, IDF1), as well as computational speed and complexity evaluations.</p>
+
+<button type="button" class="collapsible">SO-HOTA Details (Click here for displaying the details)</button>
+<div class="content">
+    <h4><strong>Proposed Evaluation Metric: SO-HOTA (Small Object HOTA)</strong></h4>
+    <p>SO-HOTA adapts the HOTA <a class="m-footnote" href="#footnote-3" id="footnote-reference-3">[3]</a></strong> framework for evaluating tracking performance specifically for small objects. Instead of relying on IoU for similarity scoring, SO-HOTA uses <strong style="color:#7e22e1;">Dot Distance (DotD) <a class="m-footnote" href="#footnote-4" id="footnote-reference-4">[4]</a></strong></strong> for similarity scoring, which compares precise point-like object representations. This is particularly effective for small objects, where IoU-based evaluation often underperforms due to sensitivity to spatial misalignments.</p>
+    
+    <h4>Mathematical Definition</h4>
+    
+    <h5>1. Dot Distance (DotD) <a class="m-footnote" href="#footnote-4" id="footnote-reference-4">[4]</a></strong></h5>
+    <p>DotD measures the normalized Euclidean distance between the centroids of predicted and ground-truth bounding boxes. For a predicted bounding box \( A \) and a ground-truth bounding box \( B \), DotD is given by:</p>
+    <div class="math-display">
+        \[
+        \text{DotD}(A, B) = \exp\left(-\frac{d(A, B)}{s}\right)
+        \]
+    </div>
+    <p>Where:</p>
+    <ul>
+        <li>\( d(A, B) \):</strong> The Euclidean distance between the centroids of \( A \) and \( B \):</li>
+        <div class="math-display">
+            \[
+            d(A, B) = \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2}
+            \]
+        </div>
+        <li><strong>\( s \) :</strong> The average size of all objects in the dataset:</li>
+        <div class="math-display">
+            \[
+            s = \sqrt{\frac{\sum_{i=1}^{M} \sum_{j=1}^{N_i} w_{ij} \cdot h_{ij}}{\sum_{i=1}^{M} N_i}}
+            \]
+        </div>
+    </ul>
+    
+    <h5>2. Matching Predictions and Ground Truth</h5>
+    <p>A one-to-one matching between ground-truth and predicted points is established using the Hungarian algorithm, maximizing the sum of <strong style="color: #7E22E1;">DotD similarity scores</strong>. A match is valid only if \( \text{DotD}(A, B) \geq \alpha \), where \( \alpha \) is a threshold.</p>
+    
+    <h5>3. True Positives, False Positives, and False Negatives</h5>
+    <p>To calculate the performance metrics, we define the following:</p>
+    <ul>
+        <li>\( TP \) (True Positives): Valid matches with \( \text{DotD}(A, B) \geq \alpha \).</li>
+        <li>\( FP \) (False Positives): Predicted points not matched to any ground truth.</li>
+        <li>\( FN \) (False Negatives): Ground-truth points not matched to any prediction.</li>
+    </ul>
+    <p>These definitions form the basis for computing detection and association accuracies.</p>
+
+    <h5>4. SO-HOTA Scoring</h5>
+    <p>Using the definitions of \( TP \), \( FP \), and \( FN \) from the previous section, SO-HOTA integrates detection accuracy (\( \text{DetA} \)) and association accuracy (\( \text{AssA} \)) as follows:</p>
+    <div class="math-display">
+        \[
+        \text{DetA}_\alpha = \frac{|TP|}{|TP| + |FN| + |FP|}
+        \]
+        \[
+        \text{AssA}_\alpha = \frac{1}{|TP|} \sum_{c \in \text{TP}} \frac{|TPA(c)|}{|TPA(c)| + |FNA(c)| + |FPA(c)|}
+        \]
+    </div>
+    <p>Where:</p>
+    <ul>
+        <li>\( TPA(c) \): True positive associations for track \( c \).</li>
+        <li>\( FNA(c) \): False negative associations for track \( c \).</li>
+        <li>\( FPA(c) \): False positive associations for track \( c \).</li>
+    </ul>
+    <p>The final SO-HOTA score for a given threshold \( \alpha \) is then computed as:</p>
+    <div class="math-display">
+        \[
+        \text{SO-HOTA}_\alpha = \sqrt{\text{DetA}_\alpha \cdot \text{AssA}_\alpha}
+        \]
+    </div>
+    
+    <h5>5. Integration over Thresholds</h5>
+    <p>The final SO-HOTA score is obtained by averaging over a range of thresholds \( \alpha \) from 0.05 to 0.95 in increments of 0.05:</p>
+    <div class="math-display">
+        \[
+        \text{SO-HOTA} = \frac{1}{19} \sum_{\alpha \in \{0.05, 0.10, \dots, 0.95\}} \text{SO-HOTA}_\alpha
+        \]
+    </div>
+    
+    <h4>Key Advantages of SO-HOTA</h4>
+    <ul>
+        <li><strong>Robust to Localization Errors:</strong> DotD focuses on centroids, making it less sensitive to object size variations and boundary alignment issues.</li>
+        <li><strong>Tailored for Small Objects:</strong> Unlike IoU, DotD effectively evaluates performance on small objects with minimal spatial extent.</li>
+        <li><strong>Balanced Evaluation:</strong> SO-HOTA inherits HOTA's balanced consideration of detection, localization, and association.</li>
+    </ul>
+</div>
+
+<!-- BASELINE -->
+
+<h3 id="baseline"><u>Baseline</u></h3>
+<p>The baseline code for this challenge is available at: <a href="https://github.com/IIM-TTIJ/MVA2025-SMOT4SB">GitHub Repository</a></p>
+
+<!-- IMPORTANT DATES -->
+
+<h3 id="important-dates"><u>Important dates</u></h3>
+<style type="text/css">table td {
+    background: #eee;
+}
+table tr:nth-child(odd) td {
+    background: #fff;
+}
+</style>
+
+<table>
+  <tbody>
+    <tr><th>Event</th><th>Date (23:59 PST)</th></tr>
+    <tr><td>Site online</td><td>2025.1.21</td></tr>
+    <tr><td>Dataset and baseline code release</td><td>2025.2.4</td></tr>
+    <tr><td>Public test server open</td><td>2025.2.4</td></tr>
+    <tr><td>Public test server close</td><td>2025.4.26</td></tr>
+    <tr><td><a href="https://docs.google.com/forms/d/e/1FAIpQLSf6P5Njd4aC1CKsoyoYx3LsZyKK1jFCcvZCNeuvH5aq7ZfRbw/viewform?usp=header">Code submission</a> deadline</td><td>2025.5.10</td></tr>
+    <tr><td>Private test results</td><td><s>2025.5.31</s> ⇒ 2025.5.24</td></tr>
+    <tr><td>Paper submission deadline</td><td><s>2025.6.28</s> ⇒ 2025.6.14</td></tr>
+    <tr><td>Notification</td><td><s>2025.6.30</s> ⇒ 2025.6.17</td></tr>
+    <tr><td>Camera-ready deadline</td><td><strong>2025.7.6</strong> (for both competition and award-track papers)</td></tr>
+  </tbody>
+</table>
+
+<p style="font-size: 0.9em; color: #555; margin-top: 20px;">
+    Please note that the schedule is subject to change.
+</p>
+
+<p>
+<strong>Note:</strong><br>
+There are only 3 weeks between the private test results (2025. 5. 24), when awardees will be confirmed, and the paper submission deadline (2025. 6. 14).<br>
+After the <strong>code submission deadline (2025. 5. 10)</strong>, a brief summary of the number of final submissions will be shared with participants.<br>
+We recommend that participants who are considering submitting a paper begin preparing their manuscripts at that point, based on the summary, rather than waiting until the final results are released.
+</p>
+
+
+
+<!-- PRIZES & AWARDS -->
+
+<h3 id="prizes"><u>Prizes &amp; Awards</u></h3>
+
+<p>This Challenge offers cash prizes and awards, along with free admission to MVA2025 for award recipients. Additionally, among the top-ranked participants, those whose <strong>own technical paper describing their proposed method</strong> is accepted through the peer-review process will be granted the right to present their work in the special session of this challenge at MVA2025.</p>
+
+<table>
+    <tbody>
         <tr>
-          <th>Subset</th>
-          <th>Description</th>
-          <th>Status</th>
+            <th>Rank</th>
+            <th>PrizeMoney</th>
+            <th>Award</th>
         </tr>
         <tr>
-          <td>Training set</td>
-          <td>TBD</td>
-          <td>TBD</td>
+            <td>1st</td>
+            <td>200,000 JPY</td>
+            <td><strong>Best Solution Award</strong></td>
         </tr>
         <tr>
-          <td>Validation set</td>
-          <td>TBD</td>
-          <td>TBD</td>
+            <td>2nd</td>
+            <td>150,000 JPY</td>
+            <td><strong>Runner-Up Solution Award</strong></td>
         </tr>
         <tr>
-          <td>Test set</td>
-          <td>TBD</td>
-          <td>TBD</td>
-        </tr>
-      </table>
-    </section>
-
-    <section id="evaluation">
-      <h2>Evaluation</h2>
-      <p>
-        The evaluation protocol and ranking metric will be announced later.
-      </p>
-      <ul>
-        <li>Primary metric: TBD</li>
-        <li>Secondary metrics: TBD</li>
-        <li>Evaluation server: TBD</li>
-      </ul>
-    </section>
-
-    <section id="dates">
-      <h2>Important Dates</h2>
-      <p>All dates are tentative.</p>
-
-      <table>
-        <tr>
-          <th>Event</th>
-          <th>Date</th>
+            <td>3rd</td>
+            <td>100,000 JPY</td>
+            <td><strong>Honorable Mention Solution Award</strong></td>
         </tr>
         <tr>
-          <td>Challenge website online</td>
-          <td>TBD</td>
+            <td>4th – 5th</td>
+            <td>50,000 JPY</td>
+            <td>-</td>
         </tr>
-        <tr>
-          <td>Dataset release</td>
-          <td>TBD</td>
-        </tr>
-        <tr>
-          <td>Submission deadline</td>
-          <td>TBD</td>
-        </tr>
-        <tr>
-          <td>Winner announcement</td>
-          <td>TBD</td>
-        </tr>
-      </table>
-    </section>
+    </tbody>
+</table>
 
-    <section id="registration">
-      <h2>Registration</h2>
-      <p>
-        Registration information will be announced later.
-      </p>
-    </section>
+<p>A chance to win <strong>the Best Booster Award</strong> will be given to participants. This award will be presented to the individual who is most actively contributing to discussions on the <strong>Discord channel</strong>. The evaluation criteria will be based on the quality of discussions and the number of positive reactions received. The winner of this award will also receive free admission to MVA2025.</p>
 
-    <section id="submission">
-      <h2>Submission</h2>
-      <p>
-        Submission instructions will be announced later.
-      </p>
-      <ul>
-        <li>Submission platform: TBD</li>
-        <li>Submission format: TBD</li>
-        <li>Code submission: TBD</li>
-      </ul>
-    </section>
+<!-- REGISTRATION -->
 
-    <section id="organizers">
-      <h2>Organizers</h2>
-      <ul>
-        <li>Norimichi Ukita, Toyota Technological Institute</li>
-        <li>Additional organizers: TBD</li>
-      </ul>
-    </section>
+<h3 id="registration"><u>Registration</u></h3>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        Contact information will be announced later.
-      </p>
-    </section>
-  </main>
+<p>If you wish to participate in this challenge, please register for the challenge in <strong>Codabench</strong> to receive email notifications for the challenge, and you can then join the <strong>Discord channel</strong> from email.</p>
 
-  <footer>
-    <p>&copy; MVA 2027 Challenge Organizers</p>
-  </footer>
+<p style="text-align: center;">&#128073;<a href="https://www.codabench.org/competitions/5101/">Codabench page</a>&nbsp;&nbsp;</p>
+
+<!-- DISCUSSION -->
+
+<h3 id="discussion"><u>Discussion</u></h3>
+<p>A dedicated <strong>Discord channel</strong> will be available for discussions among participants.</p>
+
+<!-- SUBMISSION -->
+
+<h3 id="submission"><u>Submission</u></h3>
+
+<p>Participants must submit their detection results for the public test dataset in a zip file, where the results are stored in JSON format. For the private test phase, participants must submit their trained models along with their test scripts before the deadline via the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf6P5Njd4aC1CKsoyoYx3LsZyKK1jFCcvZCNeuvH5aq7ZfRbw/viewform?usp=header ">Google Form</a>.</p>
+
+<p>After the <strong>private test results</strong>, only the top 1-5 ranked participants will be invited to co-author the <strong>challenge report</strong>. This report will summarize the competition results and analysis, including detailed evaluations beyond the ranking metric (SO-HOTA), such as traditional MOT evaluation metrics (MOTA, IDF1, etc.), computation speed, and computational cost. Participation in this challenge report as a co-author is <strong>mandatory</strong> for all top-ranked participants.</p>
+
+<p>Additionally, each of the top 1-5 ranked participants will be granted the opportunity to submit their own technical paper describing their proposed method. These papers must follow the format and submission guidelines of the MVA main conference. Submitted papers will undergo a peer-review process, and accepted papers will be presented orally in the special session of this challenge. Accepted authors may also choose to present their work as a poster.</p>
+
+<p>Further details regarding the submission process will be communicated directly to the winners.</p>
+
+<!-- CHALLENGE ORGANIZERS -->
+
+<h3 id="organizer"><u>Challenge organizers</u></h3>
+
+<div class="row">
+    <div class="one-half column">
+        <h3>Technical Event Chairs</h3>
+
+        <div class="row">
+            <p class="face one-half column"><img alt="" height="140" src="/mva2025/data/uploads/people/norimichiukita.jpg" width="140" /><br />
+                <a href="https://www.toyota-ti.ac.jp/Lab/Denshi/iim/ukita/">Norimichi Ukita</a><br />
+                <span class="aff">Toyota Technological Institute</span></p>
+
+            <p class="face one-half column"><img alt="" height="140" src="/mva2025/data/uploads/people/yukikondo.png" width="140" /><br />
+                <a href="https://yuki-11.github.io/">Yuki Kondo</a><br />
+                <span class="aff">TOYOTA Motor Corporation</span></p>
+        </div>
+    </div>
+    <div class="one-half column">
+        <h3>Staff</h3>
+
+        <div class="row">
+            <p class="face one-half column"><img alt="" height="140" src="/mva2025/data/uploads/bird/people/kanayama.jpg" width="140" /><br />
+            Riku Kanayama<br />
+            <span class="aff">Toyota Technological Institute</span></p>
+
+            <p class="face one-half column"><img alt="" height="140" src="/mva2025/data/uploads/bird/people/yoshida.jpg" width="140" /><br />
+            Yuki Yoshida<br />
+            <span class="aff">Toyota Technological Institute</span></p>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <div class="three columns">
+        <h3>Contributor</h3>
+
+        <div class="row">
+            <p class="face two column"><img alt="" height="140" src="/mva2025/data/uploads/bird/people/takayukiyamaguchi.jpg" width="140" /><br />
+                Takayuki Yamaguchi<br />
+                <span class="aff">Iwate Prefecture Coastal Regional Development Bureau</span></p>
+        </div>
+    </div>
+
+    <div class="three columns">
+        <h3>Adviser</h3>
+
+        <div class="row">
+            <p class="face two column"><img alt="" height="140" src="/mva2025/data/uploads/bird/people/kidodemasatsugu.jpg" width="140" /><br />
+                Masatsugu Kidode<br />
+                <span class="aff">Nara Institute of Science and Technology</span></p>
+        </div>
+    </div>
+
+</div>
+
+<!-- TECHNICAL PARTNER -->
+<h3 id="technical-partner"><u>Technical Partner</u></h3>
+<p>
+    We sincerely appreciate the generous support of 
+    <a href="https://www.prodrone.com/" target="_blank">Prodrone Co., Ltd.</a> 
+    in UAV-based dataset acquisition for this challenge.
+</p>
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+    <a href="https://www.prodrone.com/" target="_blank" 
+       style="display: inline-block; text-decoration: none; background-color: black; padding: 10px; transition: transform 0.3s ease;"
+       onmouseover="this.style.transform='scale(1.1)';" 
+       onmouseout="this.style.transform='scale(1.0)';" 
+       onmousedown="this.style.transform='scale(1.05)';" 
+       onmouseup="this.style.transform='scale(1.1)';">
+        <img src="https://mva-org.jp/mva2025/data/uploads/bird/prodrone_black_logo.png" 
+             alt="Prodrone Logo" 
+             style="width: 200px; height: auto;">
+    </a>
+</div>
+<br>
+
+<!-- CITING -->
+
+<h3 id="cite"><u>Citing SMOT4SB Challenge 2025</u></h3>
+
+<p>If you use the dataset, evaluation metrics, or baseline code from the <strong>SMOT4SB Challenge 2025</strong> in your research, please cite the following papers accordingly.</p>
+
+<p>The first citation refers to the challenge report summarizing the dataset, evaluation methodology, and results, which will be published after the competition. The second citation is for the baseline code used in this challenge.</p>
+
+<pre class="m-console-wrap m-code"><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">kondo2025smot4sb</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{{<a href="https://www.mva-org.jp/mva2025/challenge">MVA 2025 Small Multi-Object Tracking for Spotting Birds Challenge: Dataset, Methods, and Results</a>}}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Yuki Kondo and Norimichi Ukita and Riku Kanayama and Yuki Yoshida and Takayuki Yamaguchi and Xiang Yu and Guang Liang and Xinyao Liu and Guan-Zhang Wang and Wei-Ta Chu and Bing-Cheng Chuang and Jia-Hua Lee and Pin-Tseng Kuo and I-Hsuan Chu and Yi-Shein Hsiao and Cheng-Han Wu and Po-Yi Wu and Jui-Chien Tsou and Hsuan-Chi Liu and Chun-Yi Lee and Yuan-Fu Yang and Kosuke Shigematsu and Asuka Shin and Ba Tran}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">booktitle</span><span class="p">=</span><span class="s">{2025 19th International Conference on Machine Vision and Applications (MVA)}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2025}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">note</span><span class="p">=</span><span class="s">{\url{https://www.mva-org.jp/mva2025/challenge}}</span>
+<span class="p">}</span>
+</pre>
+
+<pre class="m-console-wrap m-code"><span class="nc">@misc</span><span class="p">{</span><span class="nl">baselinecode_mva2025_smot4sb_challenge</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{{Baseline code for SMOT4SB by IIM-TTIJ}}</span><span class="p">,
+</span><span class="w"></span><span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Riku Kanayama and Yuki Yoshida and Yuki Kondo}</span><span class="p">,
+</span><span class="w"></span><span class="w">  </span><span class="na">license</span><span class="p">=</span><span class="s">{MIT}</span><span class="p">,
+</span><span class="w"></span><span class="w">  </span><span class="na">url</span><span class="p">=</span><span class="s">{\url{https://github.com/IIM-TTIJ/MVA2025-SMOT4SB}}</span><span class="p">,
+</span><span class="w"></span><span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2025}</span><span class="w"></span><span class="p">}</span><span class="w"></span></pre>
+
+<!-- REFERENCES -->
+
+<h3 id="reference"><u>References</u></h3>
+
+<dl itemscope="" itemtype="https://schema.org/Quotation">
+    <dt id="footnote-1" style="float: left;"><a href="#footnote-reference-1">[1]</a>.</dt>
+    <dd style="margin-left:20px; list-style: none; padding-left: 0;">Y. Kondo, N. Ukita, T. Yamaguchi, H.-Y. Hou, M.-Y. Shen, C.-C. Hsu, E.-M. Huang, Y.-C. Huang, Y.-C. Xia, C.-Y. Wang, C.-Y. Lee, D. Huo, M. A. Kastner, T. Liu, Y. Kawanishi, T. Hirayama, T. Komamizu, I. Ide, Y. Shinya, X. Liu, G. Liang, and S. Yasui, 
+        "MVA2023 Small Object Detection Challenge for Spotting Birds: Dataset, Methods, and Results," in Proceedings of the 18th International Conference on Machine Vision and Applications (MVA), 2023. 
+        Available: <a href="https://www.mva-org.jp/mva2023/challenge">https://www.mva-org.jp/mva2023/challenge</a></dd>
+    <dt id="footnote-2" style="float: left;"><a href="#footnote-reference-2">[2]</a>.</dt>
+    <dd style="margin-left:20px; list-style: none; padding-left: 0;">S. Fujii, K. Akita, N. Ukita, "Distant Bird Detection for Safe Drone Flight and Its Dataset" in Proceedings of 17th International Conference on Machine Vision and Applications (MVA), 2021.</dd>
+    <dt id="footnote-3" style="float: left;"><a href="#footnote-reference-3">[3]</a>.</dt>
+    <dd style="margin-left:20px; list-style: none; padding-left: 0;">J. Luiten, A. Osep, P. Dendorfer, P. Torr, A. Geiger, L. Leal-Taixé, and B. Leibe, 
+        "HOTA: A Higher Order Metric for Evaluating Multi-Object Tracking,", International Journal of Computer Vision (IJCV), 2021.</dd>
+    <dt id="footnote-4" style="float: left;"><a href="#footnote-reference-4">[4]</a>.</dt>
+    <dd style="margin-left:20px; list-style: none; padding-left: 0;">C. Xu, J. Wang, W. Yang, and L. Yu, 
+        "Dot Distance for Tiny Object Detection in Aerial Images," in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshop (CVPRW), 2021.</dd>
+</dl>
+
+<!-- CONTACTS -->
+
+<h3><u>Contact</u></h3>
+
+<p style="text-align: center;"><a href="https://forms.gle/ytBUD6ELUu2vpqhRA">Google form</a></p>
+
+<p>&nbsp;</p>
+
+<p><br />
+    <b style="font-size: large">Please share!</b><br />
+    <br />
+    <a class="twitter-share-button" data-hashtags="MVA2025" data-lang="en" data-show-count="false" data-text="MVA2025 will host an interesting challenge!! Check it out!" data-url="http://www.mva-org.jp/mva2025/challenge" data-via="MVA_ORG" href="https://twitter.com/share?ref_src=twsrc%5Etfw">Tweet</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0" nonce="Ap8f1LCo"></script>
+
+<div class="fb-share-button" data-href="http://www.mva-org.jp/mva2025/challenge" data-layout="button_count" data-size="small"><a class="fb-xfbml-parse-ignore" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.mva-org.jp%2Fmva2025%2Fchallenge&amp;src=sdkpreparse" target="_blank">Share</a></div>
+
+<script>
+    const collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        });
+    });
+</script>
+
+
+	<footer>
+	<p>Published on <time datetime="2025-07-31">July 31st, 2025</time></p>
+	</footer>
+</article>
+</main>
+
+
+<footer>
+		
+			<p>&copy; 2026 <!--<a href="http://www.mva-org.jp/">MVA Organization</a>-->MVA Organizing Committee
+		<!-- &middot; <a href="http://get-simple.info/" target="_blank" >Powered by  GetSimple</a> -->
+		</p>
+</footer>
+
 </body>
 </html>
