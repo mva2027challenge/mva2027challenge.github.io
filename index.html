@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="utf-8">
+　　<meta name="google-site-verification" content="Em38HrrWXeZgjV-LaWDQaIAOyd5HfjGIVUJcXKOBoH8" />
+	<title>Small Multi-Object Trajectory Prediction for Spotting Birds Challenge 2027 - MVA2027</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Google検索用 -->
+	<meta name="robots" content="index, follow">
+
+	<meta name="description" content="Official website of the Small Multi-Object Trajectory Prediction for Spotting Birds Challenge 2027 at MVA2027. The challenge focuses on future trajectory prediction of small birds in UAV video sequences.">
+
+	<meta name="keywords" content="MVA2027, MVA 2027, trajectory prediction, trajectory forecasting, bird trajectory prediction, small objects, SMOT4SB, UAV, computer vision, deep learning">
+
+	<!-- 正規URL -->
+	<link rel="canonical" href="https://mva2027challenge.github.io/">
+
+	<!-- OGP -->
+	<meta property="og:title" content="Trajectory Prediction Challenge 2027 - MVA2027">
+
+	<meta property="og:description" content="Official website of the Small Multi-Object Trajectory Prediction for Spotting Birds Challenge 2027 at MVA2027.">
+
+	<meta property="og:image" content="https://www.mva-org.jp/mva2025/data/uploads/bird/smot4sb.png">
+
+	<meta property="og:url" content="https://mva2027challenge.github.io/">
+
+	<meta property="og:type" content="website">
+
+	<!-- Twitter / X -->
+	<meta name="twitter:card" content="summary_large_image">
+
+	<meta name="twitter:title" content="Trajectory Prediction Challenge 2027 - MVA2027">
+
+	<meta name="twitter:description" content="Official website of the Small Multi-Object Trajectory Prediction for Spotting Birds Challenge 2027 at MVA2027.">
+
+	<meta name="twitter:image" content="https://www.mva-org.jp/mva2025/data/uploads/bird/smot4sb.png">
+
+	<!-- MathJax -->
+	<script id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet"
+		href="https://mva-org.jp/mva2025/theme/ResponsiveInnovation/assets/css/skeleton.css">
+
+	<link rel="stylesheet"
+		href="https://mva-org.jp/mva2025/theme/ResponsiveInnovation/stylesheets/base.css">
+
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+		crossorigin="anonymous">
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="/favicon.png">
+
+</head>	
+
+<body id="challenge">
+
+<main>
+<article>
+	<header>
+	<h1>Small Multi-Object Trajectory Prediction for Spotting Birds Challenge 2027</h1>
+	</header>
+
+	<style type="text/css">
+    body {
+        background-repeat: no-repeat; 
+        background-position: top center;
+        background-color: #6B6C6B;
+        background-attachment: fixed;
+    }
+    video {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    dl{
+      word-break: break-all;
+    }
+    
+    article h1 {
+      margin: 0 0 0.5em 0;
+      color: var(--main-color-light);
+      font-size: 37px;
+      line-height: 37px;
+    }
+    
+    pre.m-console-wrap{
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+    
+    a{
+      word-break: break-all;
+    }
+    
+    img {
+    width:100%;
+    max-width: 100%;
+    height: auto;
+    }
+
+    /* Button and Collapsible Styling */
+    .collapsible {
+        background: linear-gradient(to right, #8e2de2, #4a00e0); /* Gradient background */
+        color: white; /* Text color */
+        font-weight: bold; /* Bold font */
+        font-size: 16px; /* Font size */
+        cursor: pointer; /* Pointer cursor on hover */
+        padding: 12px 16px; /* Inner padding */
+        width: 100%; /* Full width */
+        max-width: 100%; /* Prevent the button from exceeding parent width */
+        border: none; /* No border */
+        text-align: left; /* Left-align text */
+        outline: none; /* Remove focus outline */
+        border-radius: 8px; /* Rounded corners */
+        display: flex; /* Flexbox for alignment */
+        justify-content: space-between; /* Space between text and arrow */
+        align-items: center; /* Center items vertically */
+        word-wrap: break-word; /* Enable word wrapping */
+        white-space: normal; /* Allow text wrapping */
+        overflow-wrap: break-word; /* Ensure long words break within the button */
+        line-height: 1.5; /* Adjust line height */
+        box-sizing: border-box; /* Include padding and border in width/height calculations */
+        transition: background 0.3s, color 0.3s; /* Smooth transitions */
+    }
+
+    /* Hover state styling */
+    .collapsible:hover {
+        background: linear-gradient(to right, #a84dff, #6b00ff); /* Lighter gradient on hover */
+    }
+
+    /* Focus and active state styling */
+    .collapsible:focus,
+    .collapsible:active {
+        color: white; /* Keep text color white on focus and active states */
+        background: linear-gradient(to right, #8e2de2, #4a00e0); /* Retain original background */
+    }
+
+    /* Arrow styling */
+    .collapsible::after {
+        content: '\25bc'; /* Downward arrow */
+        font-size: 14px; /* Arrow size */
+        margin-left: 8px; /* Space between text and arrow */
+        transition: transform 0.3s; /* Smooth arrow rotation */
+    }
+
+    /* Rotate arrow when active */
+    .collapsible.active::after {
+        transform: rotate(-180deg); /* Rotate arrow upwards */
+    }
+
+    /* Content Section Styling */
+    .content {
+        padding: 10px 15px;
+        display: none;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        border-left: 4px solid #4a00e0;
+        font-size: 13px;
+        border-radius: 8px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .content h4 {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .content p, .content ul, .content li {
+        margin: 5px 0;
+    }
+
+    /* Math Display Styling */
+    .math-display {
+        background: #f1f1f1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 10px 0;
+        font-family: monospace;
+    }
+
+
+    /* Responsive design */
+
+    .pc { display: block !important; }
+    .sp { display: none !important; }
+     
+    @media only screen and (max-width: 750px) {
+        .pc { display: none !important; }
+        .sp { display: block !important; }
+        #twitter-widget-0{
+      width:80px !important;
+      height:25px !important;
+       }
+        .collapsible {
+            font-size: 14px; /* Reduce font size for smaller screens */
+            padding: 10px 14px; /* Adjust padding */
+            line-height: 1.4; /* Slightly reduce line height */
+        }
+    }
+</style>
+  
+
+<p>
+    <video autoplay loop muted playsinline>
+        <source src="https://www.mva-org.jp/mva2025/data/uploads/bird/sample-video-30.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- <video class="sp" autoplay loop muted playsinline>
+        <source src="https://www.mva-org.jp/mva2025/data/uploads/bird/sample-video-small.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video> -->
+</p>
+
+<!-- OVERVIEW -->
+
+<h3 id="overview"><u>Overview</u></h3>
+
+<p>In conjunction with MVA2027, we host <strong>the Small Multi-Object Trajectory Prediction for Spotting Birds Challenge</strong>. This challenge builds upon the <strong>MVA2023 Small Object Detection for Spotting Birds (SOD4SB) Challenge <a class="m-footnote" href="#footnote-1" id="footnote-reference-1">[1]</a></strong> and the MVA2025 Small Multi-Object Tracking for Spotting Birds (SMOT4SB) Challenge. The goal of MVA2027 is to move beyond detecting and tracking birds and address the next stage of UAV perception: predicting where each observed bird will move in the near future.</p>
+
+<p>&nbsp;</p>
+
+<p>Unlike detection and tracking, which estimate where birds are now, this challenge focuses on where they will move next. Inspired by the need for <strong>anticipatory perception and motion forecasting</strong> in autonomous systems, it explores whether temporal motion history, visual information, and scene context can support accurate prediction of small, fast-moving birds observed from a moving UAV.</p>
+
+<p>Participants are given an observation period containing UAV video and tracked bird locations with consistent IDs, and must predict the future 2D trajectory of each target over a fixed prediction horizon. This formulation advances research in <strong>small-object trajectory prediction</strong> by evaluating future image-plane motion rather than only current detections or track associations.</p>
+
+<p>&nbsp;</p>
+
+<p>As with the previous challenges, the MVA2027 trajectory prediction challenge aligns with MVA’s mission of bridging academia and industry in the field of machine vision and its applications. The challenge is designed not only to stimulate fundamental research in visual prediction but also to promote practical systems that can anticipate future events. Potential real-world use cases include:</p>
+
+<ul>
+    <li><strong>Autonomous UAV systems</strong> that predict bird motion in advance and plan safer collision-avoidance maneuvers.</li>
+    <li><strong>Agricultural protection systems</strong> that forecast bird movement around fields and rice paddies for more effective monitoring and deterrence.</li>
+    <li><strong>Automated ecological monitoring</strong> systems that analyze and predict bird movement patterns to support behavioral studies and environmental conservation.</li>
+</ul>
+
+<p>Through this challenge, we aim to stimulate research in small-object trajectory prediction and encourage practical solutions for anticipatory UAV perception in dynamic outdoor environments.</p>
+
+<h3><u>Announcements</u></h3>
+
+<ul>
+<li>[November 15, 2026] <font color=#990066>The challenge website is now online!</font></li>
+</ul>
+
+<!-- TASK -->
+<h3 id="task"><u>Task</u></h3>
+
+<p>The <strong>MVA2027 Challenge</strong> extends the <strong>bird detection and tracking</strong> problems addressed in previous MVA challenges into a <strong>future trajectory prediction</strong> task. Participants must predict the future motion of <strong>small birds</strong> observed in video sequences captured by <strong>UAVs</strong>.</p>
+
+<p>For each evaluation sample, an observation period is provided and participants are required to:</p>
+
+<ul>
+    <li><strong>Use the observed bird trajectories</strong> and the corresponding UAV video frames as input.</li>
+    <li><strong>Predict the future 2D trajectory</strong> of each bird that is designated as a prediction target.</li>
+    <li><strong>Forecast motion over the specified prediction horizon</strong> without access to future frames or future annotations.</li>
+</ul>
+
+<p>To successfully address this challenge, participants must develop trajectory prediction models capable of overcoming the following difficulties:</p>
+
+<ul>
+    <li><strong>Small Object Size:</strong> Birds often occupy only a few pixels, making reliable visual motion cues difficult to extract.</li>
+    <li><strong>Highly Nonlinear Motion:</strong> Birds can accelerate, turn, and change direction rapidly, requiring <strong>temporal motion forecasting</strong> beyond simple constant-velocity extrapolation.</li>
+    <li><strong>Prediction Uncertainty:</strong> Multiple future motions may be plausible from the same observed trajectory, motivating <strong>uncertainty-aware prediction</strong> methods.</li>
+    <li><strong>Realistic UAV-based Conditions:</strong> Videos may contain <strong>camera motion, changing lighting conditions, and background clutter</strong>, necessitating <strong>robust forecasting models</strong> for real outdoor environments.</li>
+    <li><strong>Camera Motion vs. Object Motion Interaction:</strong> Because both the birds and the UAV-mounted camera move simultaneously, <strong>camera/object motion disentanglement</strong> is important for accurate future trajectory prediction.</li>
+</ul>
+
+
+<p>Participants are encouraged to explore approaches such as:</p>
+
+<ul>
+    <li><strong>Trajectory-based motion models</strong> that learn temporal dynamics from observed bird tracks.</li>
+    <li><strong>Video- and optical-flow-based prediction</strong> that uses visual motion and scene context in addition to past coordinates.</li>
+    <li><strong>Transformer-, graph-, or probabilistic forecasting architectures</strong> for modeling long-term dependencies, interactions, and uncertainty.</li>
+</ul>
+
+<p>The dataset includes <strong>UAV video sequences with bird tracking annotations</strong>. Prediction samples are constructed from these tracks by separating each valid trajectory into an observation interval and a future prediction interval.</p>
+
+<p>By participating in <strong>this challenge</strong>, researchers and engineers will contribute to advancing <strong>small-object trajectory prediction</strong> with applications in <strong>autonomous UAV navigation, ecological monitoring, and bird-strike prevention systems</strong>.</p>
+
+<!-- DATASET -->
+
+<h3 id="dataset"><u>Dataset</u></h3>
+
+<p>The dataset for the <strong>MVA2027 Challenge</strong> builds on the <strong>SOD4SB dataset <a class="m-footnote" href="#footnote-1" id="footnote-reference-1">[1]</a></strong> and the UAV video sequences used in the MVA2025 SMOT4SB Challenge by organizing existing tracking annotations into <strong>trajectory segments</strong> for future prediction. The dataset is structured into two main parts:</p>
+
+<ul>
+    <li><strong>Auxiliary Object Detection Data (Image-based, from SOD4SB dataset):</strong> 
+        <ul>
+            <li>Consists of <strong>static images</strong> with annotated bird locations.</li>
+            <li>Can be used for pre-training visual feature extractors or bird detectors that support trajectory prediction.</li>
+            <li>Derived from the <strong>SOD4SB Challenge</strong> with the following subsets:
+                <ul>
+                    <li><strong>Train1</strong> (Modified from <a class="m-footnote" href="#footnote-2" id="footnote-reference-2">[2]</a>): 47,260 images with 60,971 annotated bird instances.</li>
+                    <li><strong>Train2</strong> (Subset of SOD4SB dataset <a class="m-footnote" href="#footnote-1" id="footnote-reference-1">[1]</a>): 9,759 images with 29,037 annotated bird instances.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    <li><strong>Trajectory Prediction Dataset (Video-based, derived from the SMOT4SB Dataset):</strong>
+        <ul>
+            <li>Contains <strong>UAV video sequences</strong> with bird bounding boxes and consistent tracking IDs.</li>
+            <li>Each prediction sample provides an observed portion of a track and reserves the subsequent portion as the future trajectory to be predicted.</li>
+            <li>Divided into three subsets:
+                <ul>
+                    <li><strong>Train:</strong> TBA (Future trajectories are provided for training and validation).</li>
+                    <li><strong>Public Test:</strong> TBA (Future annotations are hidden and predictions are evaluated on the public server).</li>
+                    <li><strong>Private Test:</strong> TBA (Used for the final ranking).</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    
+    <li><strong>Data Format:</strong>
+        <ul>
+            <li><strong>Input:</strong> UAV video sequences and observed bird tracks with bounding boxes and tracking IDs.</li>
+            <li><strong>Prediction Target:</strong> Future 2D bird trajectories represented by bounding-box centroid coordinates.</li>
+        </ul>
+    </li>
+</ul>
+
+<p>Participants may utilize the <strong>Auxiliary Object Detection Data</strong> and the observed video frames to learn visual representations, while the primary objective is to predict future trajectories from the <strong>Trajectory Prediction Dataset</strong>.</p>
+
+<p style="text-align: center;">&#x1f4c1;<a href="https://drive.google.com/drive/folders/1Y1J13W6VlgDh-L28n_mVbs7HIfo_Hv5s?usp=sharin">MVA2027 trajectory prediction dataset</a>&nbsp;&nbsp;</p>
+
+<!-- EVALUATION -->
+
+<h3 id="evaluation"><u>Evaluation</u></h3>
+<p>In this challenge, future trajectory prediction performance is evaluated using <strong>Average Displacement Error (ADE) and Final Displacement Error (FDE) <a class="m-footnote" href="#footnote-3" id="footnote-reference-3">[3]</a></strong>, which are widely used metrics for trajectory prediction.</p>
+
+<p>Because the targets are very small birds, the evaluation is based on the <strong>2D centroid trajectory</strong> rather than bounding-box overlap. This directly measures how accurately a method predicts future bird locations and avoids the excessive sensitivity of IoU to small localization differences.</p>
+
+<p>The primary ranking metric is <strong>Average Displacement Error (ADE)</strong>, which measures the mean Euclidean distance between predicted and ground-truth positions over the entire prediction horizon. Future bird positions are represented by <strong>bounding-box centroids <a class="m-footnote" href="#footnote-4" id="footnote-reference-4">[4]</a></strong>, and Final Displacement Error (FDE) at the last prediction time step is reported as a complementary metric. Please refer to “TRAJECTORY PREDICTION METRICS DETAILS” for details.</p>
+
+<p><strong>The final rankings in this challenge will be determined solely based on ADE (lower is better).</strong></p>
+
+<p>Additionally, a <strong>challenge report</strong> will be published after the competition, and the top-ranked participants will be invited as co-authors. This report will include an extensive analysis incorporating not only <strong>ADE and FDE</strong> but also <strong>prediction error at different forecast horizons</strong>, as well as computational speed and model complexity.</p>
+
+<button type="button" class="collapsible">Trajectory Prediction Metrics Details (Click here for displaying the details)</button>
+<div class="content">
+    <h4><strong>Evaluation Metrics: ADE and FDE</strong></h4>
+    <p>ADE and FDE <a class="m-footnote" href="#footnote-3" id="footnote-reference-3">[3]</a></strong> are standard trajectory prediction metrics for quantifying the Euclidean distance between predicted and ground-truth future positions. Instead of relying on bounding-box overlap, this challenge uses <strong style="color:#7e22e1;">centroid displacement <a class="m-footnote" href="#footnote-4" id="footnote-reference-4">[4]</a></strong></strong> so that very small birds can be evaluated independently of box size.</p>
+    
+    <h4>Mathematical Definition</h4>
+    
+    <h5>1. Trajectory Representation <a class="m-footnote" href="#footnote-4" id="footnote-reference-4">[4]</a></strong></h5>
+    <p>For target \( i \), let \( \mathbf{p}_i^t \) denote the ground-truth 2D centroid position and \( \hat{\mathbf{p}}_i^t \) the predicted position at future time step \( t \):</p>
+    <div class="math-display">
+        \[
+        \mathbf{p}_i^t=(x_i^t,y_i^t), \qquad \hat{\mathbf{p}}_i^t=(\hat{x}_i^t,\hat{y}_i^t)
+        \]
+    </div>
+    <p>Where:</p>
+    <ul>
+        <li>\( e_i^t \):</strong> The Euclidean displacement error for target \( i \) at future time step \( t \):</li>
+        <div class="math-display">
+            \[
+            e_i^t = \left\|\hat{\mathbf{p}}_i^t-\mathbf{p}_i^t\right\|_2
+            \]
+        </div>
+        <li><strong>\( T_p \) :</strong> The number of future time steps in the prediction horizon.</li>
+        <div class="math-display">
+            \[
+            t \in \{1,2,\dots,T_p\}
+            \]
+        </div>
+    </ul>
+    
+    <h5>2. Average Displacement Error (ADE)</h5>
+    <p>ADE averages displacement errors over all future time steps, providing a measure of <strong style="color: #7E22E1;">overall future path accuracy</strong>. Lower ADE indicates that the predicted trajectory remains closer to the ground-truth trajectory throughout the forecast horizon.</p>
+    
+    <h5>3. Final Displacement Error (FDE)</h5>
+    <p>FDE measures the Euclidean displacement error at the final future time step. Together with ADE, it characterizes both average forecasting quality and long-horizon accuracy:</p>
+    <ul>
+        <li>\( \mathrm{ADE} \): Mean displacement error over all future time steps.</li>
+        <li>\( \mathrm{FDE} \): Displacement error at the final prediction time step.</li>
+        <li>Both metrics are reported in image-coordinate pixels, and lower values are better.</li>
+    </ul>
+    <p>All evaluation samples use the same challenge-defined observation and prediction protocol.</p>
+
+    <h5>4. ADE and FDE Scoring</h5>
+    <p>For \( N \) evaluated trajectories and a prediction horizon of \( T_p \) time steps, ADE and FDE are computed as follows:</p>
+    <div class="math-display">
+        \[
+        \mathrm{ADE} = \frac{1}{N}\sum_{i=1}^{N}\frac{1}{T_p}\sum_{t=1}^{T_p}\left\|\hat{\mathbf{p}}_i^t-\mathbf{p}_i^t\right\|_2
+        \]
+        \[
+        \mathrm{FDE} = \frac{1}{N}\sum_{i=1}^{N}\left\|\hat{\mathbf{p}}_i^{T_p}-\mathbf{p}_i^{T_p}\right\|_2
+        \]
+    </div>
+    <p>Where:</p>
+    <ul>
+        <li>\( N \): Number of evaluated bird trajectories.</li>
+        <li>\( T_p \): Number of future time steps in the prediction horizon.</li>
+        <li>\( \|\cdot\|_2 \): Euclidean distance in the image plane.</li>
+    </ul>
+    <p>The challenge ranking score is the overall ADE:</p>
+    <div class="math-display">
+        \[
+        \text{Ranking Score}=\mathrm{ADE}
+        \]
+    </div>
+    
+    <h5>5. Aggregation over Prediction Horizons</h5>
+    <p>In addition to the overall ADE and FDE, the challenge report will analyze the mean displacement error at each future time step to show how prediction accuracy changes as the forecast horizon increases:</p>
+    <div class="math-display">
+        \[
+        E(t)=\frac{1}{N}\sum_{i=1}^{N}\left\|\hat{\mathbf{p}}_i^t-\mathbf{p}_i^t\right\|_2
+        \]
+    </div>
+    
+    <h4>Key Advantages of ADE/FDE</h4>
+    <ul>
+        <li><strong>Direct Trajectory Evaluation:</strong> ADE and FDE measure future-position errors directly in the image plane.</li>
+        <li><strong>Suitable for Small Objects:</strong> Centroid-based evaluation avoids the instability of IoU for tiny bird bounding boxes.</li>
+        <li><strong>Temporal Interpretability:</strong> ADE measures overall forecast quality, while FDE highlights long-horizon prediction accuracy.</li>
+    </ul>
+</div>
+
+<!-- BASELINE -->
+
+<h3 id="baseline"><u>Baseline</u></h3>
+<p>The baseline code for trajectory prediction in this challenge is available at: <a href="https://github.com/IIM-TTIJ/MVA2027-SMOT4SB">GitHub Repository</a></p>
+
+<!-- IMPORTANT DATES -->
+
+<h3 id="important-dates"><u>Important dates</u></h3>
+<style type="text/css">table td {
+    background: #eee;
+}
+table tr:nth-child(odd) td {
+    background: #fff;
+}
+</style>
+
+<table>
+  <tbody>
+    <tr><th>Event</th><th>Date (23:59 PST)</th></tr>
+    <tr><td>Site online</td><td>2026.11.15</td></tr>
+    <tr><td>Dataset and baseline code release</td><td>2026.11.20</td></tr>
+    <tr><td>Public test server open</td><td>2026.11.20</td></tr>
+    <tr><td>Public test server close</td><td>2027.2.10</td></tr>
+    <tr><td><a href="https://docs.google.com/forms/d/e/1FAIpQLSf6P5Njd4aC1CKsoyoYx3LsZyKK1jFCcvZCNeuvH5aq7ZfRbw/viewform?usp=header">Code submission</a> deadline</td><td>2027.3.1</td></tr>
+    <tr><td>Private test results</td><td>2027.3.29</td></tr>
+    <tr><td>Paper submission deadline</td><td>2027.4.7</td></tr>
+    <tr><td>Notification</td><td>2027.4.10</td></tr>
+    <tr><td>Camera-ready deadline</td><td><strong>2027.4.20</strong> (for both competition and award-track papers)</td></tr>
+  </tbody>
+</table>
+
+<p style="font-size: 0.9em; color: #555; margin-top: 20px;">
+    Please note that the schedule is subject to change.
+</p>
+
+<p>
+<strong>Note:</strong><br>
+There are only 2 weeks between the private test results (2027. 3. 24), when awardees will be confirmed, and the paper submission deadline (2027. 4. 7).<br>
+After the <strong>code submission deadline (2027. 3. 1)</strong>, a brief summary of the number of final submissions will be shared with participants.<br>
+We recommend that participants who are considering submitting a paper begin preparing their manuscripts at that point, based on the summary, rather than waiting until the final results are released.
+</p>
+
+
+
+<!-- PRIZES & AWARDS -->
+
+<h3 id="prizes"><u>Prizes &amp; Awards</u></h3>
+
+<p>This Challenge offers cash prizes and awards, along with free admission to MVA2027 for award recipients. Additionally, among the top-ranked participants, those whose <strong>own technical paper describing their proposed method</strong> is accepted through the peer-review process will be granted the right to present their work in the special session of this challenge at MVA2027.</p>
+
+<table>
+    <tbody>
+        <tr>
+            <th>Rank</th>
+            <th>PrizeMoney</th>
+            <th>Award</th>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td>200,000 JPY</td>
+            <td><strong>Best Solution Award</strong></td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td>150,000 JPY</td>
+            <td><strong>Runner-Up Solution Award</strong></td>
+        </tr>
+        <tr>
+            <td>3rd</td>
+            <td>100,000 JPY</td>
+            <td><strong>Honorable Mention Solution Award</strong></td>
+        </tr>
+        <tr>
+            <td>4th – 5th</td>
+            <td>50,000 JPY</td>
+            <td>-</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>A chance to win <strong>the Best Booster Award</strong> will be given to participants. This award will be presented to the individual who is most actively contributing to discussions on the <strong>Discord channel</strong>. The evaluation criteria will be based on the quality of discussions and the number of positive reactions received. The winner of this award will also receive free admission to MVA2027.</p>
+
+<!-- REGISTRATION -->
+
+<h3 id="registration"><u>Registration</u></h3>
+
+<p>If you wish to participate in this challenge, please register for the challenge in <strong>Codabench</strong> to receive email notifications for the challenge, and you can then join the <strong>Discord channel</strong> from email.</p>
+
+<p style="text-align: center;">&#128073;<a href="https://www.codabench.org/competitions/5101/">Codabench page</a>&nbsp;&nbsp;</p>
+
+<!-- DISCUSSION -->
+
+<h3 id="discussion"><u>Discussion</u></h3>
+<p>A dedicated <strong>Discord channel</strong> will be available for discussions among participants.</p>
+
+<!-- SUBMISSION -->
+
+<h3 id="submission"><u>Submission</u></h3>
+
+<p>Participants must submit their trajectory prediction results for the public test dataset in a zip file, where the predicted future trajectories are stored in JSON format. For the private test phase, participants must submit their trained models along with their test scripts before the deadline via the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf6P5Njd4aC1CKsoyoYx3LsZyKK1jFCcvZCNeuvH5aq7ZfRbw/viewform?usp=header ">Google Form</a>.</p>
+
+<p>After the <strong>private test results</strong>, only the top 1-5 ranked participants will be invited to co-author the <strong>challenge report</strong>. This report will summarize the competition results and analysis, including detailed evaluations beyond the ranking metric (ADE), such as FDE, prediction error at different forecast horizons, computation speed, and computational cost. Participation in this challenge report as a co-author is <strong>mandatory</strong> for all top-ranked participants.</p>
+
+<p>Additionally, each of the top 1-5 ranked participants will be granted the opportunity to submit their own technical paper describing their proposed method. These papers must follow the format and submission guidelines of the MVA main conference. Submitted papers will undergo a peer-review process, and accepted papers will be presented orally in the special session of this challenge. Accepted authors may also choose to present their work as a poster.</p>
+
+<p>Further details regarding the submission process will be communicated directly to the winners.</p>
+
+<!-- CHALLENGE ORGANIZERS -->
+
+<h3 id="organizer"><u>Challenge organizers</u></h3>
+
+<div class="row">
+    <div class="one-half column">
+        <h3>Technical Event Chairs</h3>
+
+        <div class="row">
+            <p class="face one-half column"><img alt="" height="140" src="/mva2027/data/uploads/people/norimichiukita.jpg" width="140" /><br />
+                <a href="https://www.toyota-ti.ac.jp/Lab/Denshi/iim/ukita/">Norimichi Ukita</a><br />
+                <span class="aff">Toyota Technological Institute</span></p>
+
+            <p class="face one-half column"><img alt="" height="140" src="/mva2027/data/uploads/people/yukikondo.png" width="140" /><br />
+                <a href="https://yuki-11.github.io/">Yuki Kondo</a><br />
+                <span class="aff">TOYOTA Motor Corporation</span></p>
+        </div>
+    </div>
+    <div class="one-half column">
+        <h3>Staff</h3>
+
+        <div class="row">
+            <p class="face one-half column"><img alt="" height="140" src="/mva2027/data/uploads/bird/people/kanayama.jpg" width="140" /><br />
+            Riku Kanayama<br />
+            <span class="aff">Toyota Technological Institute</span></p>
+
+            <p class="face one-half column"><img alt="" height="140" src="/mva2027/data/uploads/bird/people/yoshida.jpg" width="140" /><br />
+            Yuki Yoshida<br />
+            <span class="aff">Toyota Technological Institute</span></p>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <div class="three columns">
+        <h3>Contributor</h3>
+
+        <div class="row">
+            <p class="face two column"><img alt="" height="140" src="/mva2027/data/uploads/bird/people/takayukiyamaguchi.jpg" width="140" /><br />
+                Takayuki Yamaguchi<br />
+                <span class="aff">Iwate Prefecture Coastal Regional Development Bureau</span></p>
+        </div>
+    </div>
+
+    <div class="three columns">
+        <h3>Adviser</h3>
+
+        <div class="row">
+            <p class="face two column"><img alt="" height="140" src="/mva2027/data/uploads/bird/people/kidodemasatsugu.jpg" width="140" /><br />
+                Masatsugu Kidode<br />
+                <span class="aff">Nara Institute of Science and Technology</span></p>
+        </div>
+    </div>
+
+</div>
+
+<!-- TECHNICAL PARTNER -->
+<h3 id="technical-partner"><u>Technical Partner</u></h3>
+<p>
+    We sincerely appreciate the generous support of 
+    <a href="https://www.prodrone.com/" target="_blank">Prodrone Co., Ltd.</a> 
+    in UAV-based dataset acquisition for the SMOT4SB data that form the basis of this trajectory prediction challenge.
+</p>
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+    <a href="https://www.prodrone.com/" target="_blank" 
+       style="display: inline-block; text-decoration: none; background-color: black; padding: 10px; transition: transform 0.3s ease;"
+       onmouseover="this.style.transform='scale(1.1)';" 
+       onmouseout="this.style.transform='scale(1.0)';" 
+       onmousedown="this.style.transform='scale(1.05)';" 
+       onmouseup="this.style.transform='scale(1.1)';">
+        <img src="https://mva-org.jp/mva2027/data/uploads/bird/prodrone_black_logo.png" 
+             alt="Prodrone Logo" 
+             style="width: 200px; height: auto;">
+    </a>
+</div>
+<br>
+
+<!-- CITING -->
+
+<h3 id="cite"><u>Citing MVA2027 Trajectory Prediction Challenge</u></h3>
+
+<p>If you use the dataset, evaluation metrics, or baseline code from the <strong>MVA2027 trajectory prediction challenge</strong> in your research, please cite the relevant papers listed below. The citation for the MVA2027 challenge report will be added after publication.</p>
+
+<p>In particular, the MVA2025 SMOT4SB challenge paper describes the UAV tracking dataset on which this prediction task is based, while the other references provide background on bird detection, trajectory prediction metrics, and centroid-based evaluation for tiny objects.</p>
+
+
+
+
+
+<!-- REFERENCES -->
+
+<h3 id="reference"><u>References</u></h3>
+
+<dl itemscope="" itemtype="https://schema.org/Quotation">
+    <dt id="footnote-1" style="float: left;"><a href="#footnote-reference-1">[1]</a>.</dt>
+    <dd style="margin-left:20px; list-style: none; padding-left: 0;">Y. Kondo, N. Ukita, T. Yamaguchi, H.-Y. Hou, M.-Y. Shen, C.-C. Hsu, E.-M. Huang, Y.-C. Huang, Y.-C. Xia, C.-Y. Wang, C.-Y. Lee, D. Huo, M. A. Kastner, T. Liu, Y. Kawanishi, T. Hirayama, T. Komamizu, I. Ide, Y. Shinya, X. Liu, G. Liang, and S. Yasui, 
+        "MVA2023 Small Object Detection Challenge for Spotting Birds: Dataset, Methods, and Results," in Proceedings of the 18th International Conference on Machine Vision and Applications (MVA), 2023. 
+        Available: <a href="https://www.mva-org.jp/mva2023/challenge">https://www.mva-org.jp/mva2023/challenge</a></dd>
+    <dt id="footnote-2" style="float: left;"><a href="#footnote-reference-2">[2]</a>.</dt>
+    <dd style="margin-left:20px; list-style: none; padding-left: 0;">S. Fujii, K. Akita, N. Ukita, "Distant Bird Detection for Safe Drone Flight and Its Dataset" in Proceedings of 17th International Conference on Machine Vision and Applications (MVA), 2021.</dd>
+    <dt id="footnote-3" style="float: left;"><a href="#footnote-reference-3">[3]</a>.</dt>
+    <dd style="margin-left:20px; list-style: none; padding-left: 0;">A. Alahi, K. Goel, V. Ramanathan, A. Robicquet, L. Fei-Fei, and S. Savarese, 
+        "Social LSTM: Human Trajectory Prediction in Crowded Spaces," in Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016.</dd>
+    <dt id="footnote-4" style="float: left;"><a href="#footnote-reference-4">[4]</a>.</dt>
+    <dd style="margin-left:20px; list-style: none; padding-left: 0;">C. Xu, J. Wang, W. Yang, and L. Yu, 
+        "Dot Distance for Tiny Object Detection in Aerial Images," in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshop (CVPRW), 2021.</dd>
+	<dt id="footnote-1" style="float: left;"><a href="#footnote-reference-1">[5]</a>.</dt>
+	<dd style="margin-left:20px; list-style: none; padding-left: 0;">Yuki Kondo and Norimichi Ukita and Riku Kanayama and Yuki Yoshida and Takayuki Yamaguchi and Xiang Yu and Guang Liang and Xinyao Liu and Guan-Zhang Wang and Wei-Ta Chu and Bing-Cheng Chuang and Jia-Hua Lee and Pin-Tseng Kuo and I-Hsuan Chu and Yi-Shein Hsiao and Cheng-Han Wu and Po-Yi Wu and Jui-Chien Tsou and Hsuan-Chi Liu and Chun-Yi Lee and Yuan-Fu Yang and Kosuke Shigematsu and Asuka Shin and Ba Tran, 
+         "MVA 2025 Small Multi-Object Tracking for Spotting Birds Challenge: Dataset, Methods, and Results," in Proceedings of the 19th International Conference on Machine Vision and Applications (MVA), 2025. 
+         Available: <a href="https://www.mva-org.jp/mva2025/challenge">https://www.mva-org.jp/mva2025/challenge</a></dd>
+</dl>
+
+<!-- CONTACTS -->
+
+<h3><u>Contact</u></h3>
+
+<p style="text-align: center;"><a href="https://forms.gle/ytBUD6ELUu2vpqhRA">Google form</a></p>
+
+<p>&nbsp;</p>
+
+<p><br />
+    <b style="font-size: large">Please share!</b><br />
+    <br />
+    <a class="twitter-share-button" data-hashtags="MVA2027" data-lang="en" data-show-count="false" data-text="MVA2027 will host an interesting challenge!! Check it out!" data-url="http://www.mva-org.jp/mva2027/challenge" data-via="MVA_ORG" href="https://twitter.com/share?ref_src=twsrc%5Etfw">Tweet</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0" nonce="Ap8f1LCo"></script>
+
+<div class="fb-share-button" data-href="http://www.mva-org.jp/mva2027/challenge" data-layout="button_count" data-size="small"><a class="fb-xfbml-parse-ignore" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.mva-org.jp%2Fmva2027%2Fchallenge&amp;src=sdkpreparse" target="_blank">Share</a></div>
+
+<script>
+    const collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const content = this.nextElementSibling;
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+            } else {
+                content.style.display = 'block';
+            }
+        });
+    });
+</script>
+
+
+	<footer>
+	<p>Published on <time datetime="2027-07-31">July 31st, 2027</time></p>
+	</footer>
+</article>
+</main>
+
+
+<footer>
+		
+			<p>&copy; 2026 <!--<a href="http://www.mva-org.jp/">MVA Organization</a>-->MVA Organizing Committee
+		<!-- &middot; <a href="http://get-simple.info/" target="_blank" >Powered by  GetSimple</a> -->
+		</p>
+</footer>
+
+</body>
+</html>
